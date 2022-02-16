@@ -1,5 +1,6 @@
 #!python
-from __future__ import division, print_function  # Python 2 and 3 compatibility
+from __future__ import division, print_function
+import enum  # Python 2 and 3 compatibility
 from string import punctuation
 import random
 
@@ -51,7 +52,6 @@ class Listogram(list):
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
-        # TODO: Check if word is in this histogram
         for a_word in self:
             if word == a_word[0]:
                 return True
@@ -60,16 +60,15 @@ class Listogram(list):
     def index_of(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
-        # TODO: Implement linear search to find index of entry with target word
-        if target in range(0, self.types):
-            return self[target]
-        else:
-            return None
+        for word in self:
+            if word[0] == target:
+                return print(word[1])
+        return 0
+        
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
-        # TODO: Randomly choose a word based on its frequency in this histogram
         selected_index = random.uniform(0,self.tokens)
         index = 0
         for word in self:

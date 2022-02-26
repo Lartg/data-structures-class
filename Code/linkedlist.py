@@ -102,7 +102,7 @@ class LinkedList:
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item, if present return True otherwise False
         if self.is_empty():
-            return 'List is empty'
+            return False
         else:
             if self.tail.data == item:
                 return True
@@ -124,7 +124,6 @@ class LinkedList:
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
         if self.is_empty() == False:
-            node = self.head
             if self.head.data == item:
                 if self.head == self.tail:
                     self.head = None
@@ -132,6 +131,7 @@ class LinkedList:
                     return
                 self.head = self.head.next
                 return
+            node = self.head
             while node != self.tail:
                 if node.next.data == item:
                     if node.next != self.tail:

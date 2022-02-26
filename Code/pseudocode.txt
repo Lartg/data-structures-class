@@ -1,0 +1,5 @@
+make a histogram where keys are all words in text
+stored are tuples of words that follow the key and the the next word
+
+add key to sentence
+pick randomly from the list of tuples, add the first value and make second new key

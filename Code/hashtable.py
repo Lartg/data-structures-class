@@ -63,7 +63,6 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
-        
         return len(self.items())
 
 
@@ -100,7 +99,11 @@ class HashTable(object):
        
         bucket = self.buckets[self._bucket_index(key)]
         for stored_key, stored_value in bucket.items():
-            pass
+            if stored_key == key:
+                stored_value.append(value)
+                return
+        bucket.append([key, [value]])
+        return
     
 
 
@@ -113,6 +116,14 @@ class HashTable(object):
         # TODO: If found, delete entry associated with given key
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
+        bucket = self.buckets[self._bucket_index(key)]
+        if key in self.keys():
+            for stored_key in bucket.items():
+                if stored_key[0] == key:
+                    bucket.delete(stored_key)
+                    
+        return
+        
 
 if __name__ == '__main__':
     ht = HashTable()

@@ -98,11 +98,11 @@ class HashTable(object):
         # TODO: Otherwise, insert given key-value entry into bucket
        
         bucket = self.buckets[self._bucket_index(key)]
-        for stored_key, stored_value in bucket.items():
-            if stored_key == key:
-                stored_value.append(value)
+        for stored_entry in bucket.items():
+            if stored_entry[0] == key:
+                stored_entry[1] = value
                 return
-        bucket.append([key, [value]])
+        bucket.append([key, value])
         return
     
 
@@ -121,8 +121,9 @@ class HashTable(object):
             for stored_key in bucket.items():
                 if stored_key[0] == key:
                     bucket.delete(stored_key)
+                    return
                     
-        return
+        raise KeyError('Key not found: {}'.format(key))
         
 
 if __name__ == '__main__':
